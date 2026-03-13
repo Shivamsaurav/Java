@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class HighestPaidEmployee {
+public class Q04HighestPaidEmployee {
     public static void main(String[] args) {
         List<Employee> employeeList = new ArrayList<>();
 

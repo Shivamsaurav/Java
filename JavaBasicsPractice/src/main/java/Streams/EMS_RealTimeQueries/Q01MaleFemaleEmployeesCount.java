@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MaleFemaleEmployeesCount {
+public class Q01MaleFemaleEmployeesCount {
     public static void main(String[] args) {
 
         List<Employee> employeeList = new ArrayList<>();

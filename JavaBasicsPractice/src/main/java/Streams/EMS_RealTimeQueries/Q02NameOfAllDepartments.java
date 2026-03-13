@@ -2,12 +2,9 @@ package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class AverageAgeOfMaleAndFemaleEmployees {
+public class Q02NameOfAllDepartments {
     public static void main(String[] args) {
-
         List<Employee> employeeList = new ArrayList<>();
 
         employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
@@ -28,9 +25,9 @@ public class AverageAgeOfMaleAndFemaleEmployees {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-        Map<String, Double> averageAgeOfMaleAndFemaleEmployees = employeeList.stream()
-                .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
-
-        System.out.println(averageAgeOfMaleAndFemaleEmployees);
+        employeeList.stream()
+                .map(Employee::getDepartment)
+                .distinct()
+                .forEach(System.out::println);
     }
 }
