@@ -2,15 +2,12 @@ package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Q12NameOfEmployeesInEachDept {
+public class Q13AverageSalaryAndTotalSalaryOfOrganisation {
 
 	public static void main(String[] args) {
-		
+
 		List<Employee> employeeList = new ArrayList<>();
 
 	    employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
@@ -31,22 +28,13 @@ public class Q12NameOfEmployeesInEachDept {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Map<String, List<Employee>> employeeListByDepartment = employeeList.stream()
-	    			.collect(Collectors.groupingBy(Employee::getDepartment));
-
-	    Set<Entry<String, List<Employee>>> entrySet = employeeListByDepartment.entrySet();
+	    Double averageSalary = employeeList.stream()
+	     			.collect(Collectors.averagingDouble(Employee::getSalary));
+	    System.out.println("Average Salary : "+averageSalary);
 	    
-	    for(Entry<String, List<Employee>> entry:entrySet) {
-	    	System.out.println("---------------------------");
-	    	System.out.println(entry.getKey());
-	    	System.out.println("---------------------------");
-	    	
-	    	List<Employee> list = entry.getValue();
-	    	for(Employee e:list) {
-	    		System.out.println(e.getName());
-	    	}
-	    }
-
+	    Double totalSalary = employeeList.stream()
+	     			.collect(Collectors.summingDouble(Employee::getSalary));
+	    System.out.println("Total Salary : "+totalSalary);
 	}
 
 }

@@ -1,13 +1,10 @@
 package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-public class Q12NameOfEmployeesInEachDept {
+public class OldestEmployeeInOrganisation {
 
 	public static void main(String[] args) {
 		
@@ -31,21 +28,14 @@ public class Q12NameOfEmployeesInEachDept {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Map<String, List<Employee>> employeeListByDepartment = employeeList.stream()
-	    			.collect(Collectors.groupingBy(Employee::getDepartment));
-
-	    Set<Entry<String, List<Employee>>> entrySet = employeeListByDepartment.entrySet();
-	    
-	    for(Entry<String, List<Employee>> entry:entrySet) {
-	    	System.out.println("---------------------------");
-	    	System.out.println(entry.getKey());
-	    	System.out.println("---------------------------");
-	    	
-	    	List<Employee> list = entry.getValue();
-	    	for(Employee e:list) {
-	    		System.out.println(e.getName());
-	    	}
-	    }
+	    Employee oldestEmployee = employeeList.stream()
+	     			.max(Comparator.comparingInt(Employee::getAge))
+	     			.get();
+	    System.out.println("Oldest Employee Details");
+	    System.out.println("-----------------------");
+	    System.out.println("Name : "+oldestEmployee.getName());
+	    System.out.println("Age : "+oldestEmployee.getAge());
+	    System.out.println("Department : "+oldestEmployee.getDepartment());
 
 	}
 
