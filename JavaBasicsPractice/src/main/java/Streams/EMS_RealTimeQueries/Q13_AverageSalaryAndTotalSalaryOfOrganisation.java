@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Q13AverageSalaryAndTotalSalaryOfOrganisation {
+public class Q13_AverageSalaryAndTotalSalaryOfOrganisation {
 
 	public static void main(String[] args) {
 

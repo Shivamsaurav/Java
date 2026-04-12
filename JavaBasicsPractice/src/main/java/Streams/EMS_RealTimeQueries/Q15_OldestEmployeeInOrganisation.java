@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Q08YoungestMaleInProductDevDept {
+public class Q15_OldestEmployeeInOrganisation {
 
 	public static void main(String[] args) {
 		
@@ -28,19 +28,14 @@ public class Q08YoungestMaleInProductDevDept {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Employee youngestMaleEmployeeInProductDevelopment = employeeList.stream()
-	    			.filter(e->e.getGender()=="Male" && e.getDepartment() == "Product Development")
-	    			.min(Comparator.comparingInt(Employee::getAge))
-	    			.get();
-	    
-	    System.out.println("Details Of Youngest Male Employee In Product Development");       
-	    System.out.println("--------------------------------------------------------");
-	    
-	    System.out.println("ID : "+youngestMaleEmployeeInProductDevelopment.getId());	             
-	    System.out.println("Name : "+youngestMaleEmployeeInProductDevelopment.getName());	             
-	    System.out.println("Age : "+youngestMaleEmployeeInProductDevelopment.getAge());	             
-	    System.out.println("Year Of Joinging : "+youngestMaleEmployeeInProductDevelopment.getYearOfJoining());	             
-	    System.out.println("Salary : "+youngestMaleEmployeeInProductDevelopment.getSalary());
+	    Employee oldestEmployee = employeeList.stream()
+	     			.max(Comparator.comparingInt(Employee::getAge))
+	     			.get();
+	    System.out.println("Oldest Employee Details");
+	    System.out.println("-----------------------");
+	    System.out.println("Name : "+oldestEmployee.getName());
+	    System.out.println("Age : "+oldestEmployee.getAge());
+	    System.out.println("Department : "+oldestEmployee.getDepartment());
 
 	}
 

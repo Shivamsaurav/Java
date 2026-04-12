@@ -2,13 +2,12 @@ package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class Q01MaleFemaleEmployeesCount {
-    public static void main(String[] args) {
+public class Q05_EmployeeAfter2015 {
 
-        List<Employee> employeeList = new ArrayList<>();
+	public static void main(String[] args) {
+		
+		List<Employee> employeeList = new ArrayList<>();
 
         employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
         employeeList.add(new Employee(122, "Paul Niksui", 25, "Male", "Sales And Marketing", 2015, 13500.0));
@@ -28,9 +27,12 @@ public class Q01MaleFemaleEmployeesCount {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-        Map<String, Long> noOfMaleAndFemaleEmployees = employeeList.stream()
-                .collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()));
+        employeeList.stream()
+         			.filter(emp -> emp.getYearOfJoining() > 2015)
+         			.map(Employee::getName)
+         			.forEach(System.out::println);
+        
 
-        System.out.println(noOfMaleAndFemaleEmployees);
-    }
+	}
+
 }

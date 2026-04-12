@@ -1,10 +1,11 @@
 package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class Q15OldestEmployeeInOrganisation {
+public class Q11_AverageSalaryOfMaleAndFemaleEmployees {
 
 	public static void main(String[] args) {
 		
@@ -28,15 +29,10 @@ public class Q15OldestEmployeeInOrganisation {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Employee oldestEmployee = employeeList.stream()
-	     			.max(Comparator.comparingInt(Employee::getAge))
-	     			.get();
-	    System.out.println("Oldest Employee Details");
-	    System.out.println("-----------------------");
-	    System.out.println("Name : "+oldestEmployee.getName());
-	    System.out.println("Age : "+oldestEmployee.getAge());
-	    System.out.println("Department : "+oldestEmployee.getDepartment());
+	    Map<String, Double> avgSalaryOfMaleAndFemaleEmployees = employeeList.stream()
+	     			.collect(Collectors.groupingBy(Employee::getGender,Collectors.averagingDouble(Employee::getSalary)));
 
+	    System.out.println(avgSalaryOfMaleAndFemaleEmployees);
 	}
 
 }

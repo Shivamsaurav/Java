@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Q11AverageSalaryOfMaleAndFemaleEmployees {
+public class Q10_MalesAndFemalesInSalesAndMarketingDept {
 
 	public static void main(String[] args) {
 		
@@ -29,10 +29,11 @@ public class Q11AverageSalaryOfMaleAndFemaleEmployees {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Map<String, Double> avgSalaryOfMaleAndFemaleEmployees = employeeList.stream()
-	     			.collect(Collectors.groupingBy(Employee::getGender,Collectors.averagingDouble(Employee::getSalary)));
+	    Map<String, Long> countMaleFemaleEmployeesInSalesMarketing = employeeList.stream()
+	    			.filter(emp->emp.getDepartment()=="Sales And Marketing")
+	    			.collect(Collectors.groupingBy(Employee::getGender,Collectors.counting()));
 
-	    System.out.println(avgSalaryOfMaleAndFemaleEmployees);
+	    System.out.println(countMaleFemaleEmployeesInSalesMarketing);
 	}
 
 }

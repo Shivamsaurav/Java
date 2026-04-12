@@ -1,10 +1,13 @@
 package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class Q09MostWorkingExperienceInOrganisation {
+public class Q14_SeperateEmployeesYoungerOrEqual25AndOlderThan23 {
 
 	public static void main(String[] args) {
 		
@@ -28,20 +31,25 @@ public class Q09MostWorkingExperienceInOrganisation {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Employee seniorMostEmployee = employeeList.stream()
-	     			.min(Comparator.comparingInt(Employee::getYearOfJoining))
-	     			.get();
+	    Map<Boolean, List<Employee>> partitionEmployeesByAge = employeeList.stream()
+	     			.collect(Collectors.partitioningBy(emp->emp.getAge()>25));
 	    
-	    System.out.println("Senior Most Employee Details :");       
-	    System.out.println("------------------------------");
+	    Set<Entry<Boolean,List<Employee>>> entrySet = partitionEmployeesByAge.entrySet();
 	    
-	    System.out.println("ID : "+seniorMostEmployee.getId());	             
-	    System.out.println("Name : "+seniorMostEmployee.getName());	             
-	    System.out.println("Age : "+seniorMostEmployee.getAge());	             
-	    System.out.println("Year Of Joinging : "+seniorMostEmployee.getYearOfJoining());	             
-	    System.out.println("Salary : "+seniorMostEmployee.getSalary());
-
-
+	    for(Entry<Boolean, List<Employee>> entry:entrySet) {
+	    	System.out.println("----------------------------------------");
+	    	if(entry.getKey()) {
+	    		System.out.println("Employees older than 25 years :");
+	    	}
+	    	else {
+	    		System.out.println("Employees younger than or equal to 25 years :");
+	    	}
+	    	System.out.println("----------------------------------------");
+	    	List<Employee> empList = entry.getValue();
+	    	for(Employee emp:empList) {
+	    		System.out.println(emp.getName());
+	    	}
+	    }
 	}
 
 }

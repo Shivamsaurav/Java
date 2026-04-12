@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Q07AverageSalaryOfEachDept {
+public class Q07_AverageSalaryOfEachDept {
 
 	public static void main(String[] args) {
 		

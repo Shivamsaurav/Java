@@ -3,12 +3,15 @@ package Streams.EMS_RealTimeQueries;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Q03AverageAgeOfMaleAndFemaleEmployees {
-    public static void main(String[] args) {
+public class Q06_EmployeeInEachDept {
 
-        List<Employee> employeeList = new ArrayList<>();
+	public static void main(String[] args) {
+		
+		List<Employee> employeeList = new ArrayList<>();
 
         employeeList.add(new Employee(111, "Jiya Brein", 32, "Female", "HR", 2011, 25000.0));
         employeeList.add(new Employee(122, "Paul Niksui", 25, "Male", "Sales And Marketing", 2015, 13500.0));
@@ -28,9 +31,14 @@ public class Q03AverageAgeOfMaleAndFemaleEmployees {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-        Map<String, Double> averageAgeOfMaleAndFemaleEmployees = employeeList.stream()
-                .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
+        Map<String, Long> employeeDepartmentCount = employeeList.stream()
+         			.collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
+        Set<Entry<String,Long>> entrySet = employeeDepartmentCount.entrySet();
+        
+        for(Entry<String, Long> entry:entrySet) {
+        	System.out.println(entry.getKey()+" : "+entry.getValue());
+        }
 
-        System.out.println(averageAgeOfMaleAndFemaleEmployees);
-    }
+	}
+
 }

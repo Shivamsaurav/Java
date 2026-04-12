@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Q12NameOfEmployeesInEachDept {
+public class Q12_NameOfEmployeesInEachDept {
 
 	public static void main(String[] args) {
 		

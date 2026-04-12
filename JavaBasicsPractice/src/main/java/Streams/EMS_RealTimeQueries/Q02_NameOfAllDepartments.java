@@ -1,10 +1,9 @@
 package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class Q04HighestPaidEmployee {
+public class Q02_NameOfAllDepartments {
     public static void main(String[] args) {
         List<Employee> employeeList = new ArrayList<>();
 
@@ -26,10 +25,9 @@ public class Q04HighestPaidEmployee {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-        Employee highestPaidEmployee = employeeList.stream()
-                .max(Comparator.comparingDouble(Employee::getSalary))
-                .get();
-
-        System.out.println(highestPaidEmployee);
+        employeeList.stream()
+                .map(Employee::getDepartment)
+                .distinct()
+                .forEach(System.out::println);
     }
 }

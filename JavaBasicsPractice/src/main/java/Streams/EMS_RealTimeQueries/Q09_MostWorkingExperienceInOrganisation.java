@@ -1,13 +1,10 @@
 package Streams.EMS_RealTimeQueries;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-public class Q14SeperateEmployeesYoungerOrEqual25AndOlderThan23 {
+public class Q09_MostWorkingExperienceInOrganisation {
 
 	public static void main(String[] args) {
 		
@@ -31,25 +28,20 @@ public class Q14SeperateEmployeesYoungerOrEqual25AndOlderThan23 {
 	    employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
 	    employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
-	    Map<Boolean, List<Employee>> partitionEmployeesByAge = employeeList.stream()
-	     			.collect(Collectors.partitioningBy(emp->emp.getAge()>25));
+	    Employee seniorMostEmployee = employeeList.stream()
+	     			.min(Comparator.comparingInt(Employee::getYearOfJoining))
+	     			.get();
 	    
-	    Set<Entry<Boolean,List<Employee>>> entrySet = partitionEmployeesByAge.entrySet();
+	    System.out.println("Senior Most Employee Details :");       
+	    System.out.println("------------------------------");
 	    
-	    for(Entry<Boolean, List<Employee>> entry:entrySet) {
-	    	System.out.println("----------------------------------------");
-	    	if(entry.getKey()) {
-	    		System.out.println("Employees older than 25 years :");
-	    	}
-	    	else {
-	    		System.out.println("Employees younger than or equal to 25 years :");
-	    	}
-	    	System.out.println("----------------------------------------");
-	    	List<Employee> empList = entry.getValue();
-	    	for(Employee emp:empList) {
-	    		System.out.println(emp.getName());
-	    	}
-	    }
+	    System.out.println("ID : "+seniorMostEmployee.getId());	             
+	    System.out.println("Name : "+seniorMostEmployee.getName());	             
+	    System.out.println("Age : "+seniorMostEmployee.getAge());	             
+	    System.out.println("Year Of Joinging : "+seniorMostEmployee.getYearOfJoining());	             
+	    System.out.println("Salary : "+seniorMostEmployee.getSalary());
+
+
 	}
 
 }
