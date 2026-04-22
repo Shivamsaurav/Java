@@ -14,7 +14,7 @@ public class Q04_FailSafeExample {
 		map.put("Moscow", "Russia");
 		map.put("New York", "USA");
 		
-		Iterator iterator = map.keySet().iterator();
+		Iterator<String> iterator = map.keySet().iterator();
 		
 		while (iterator.hasNext()) {
 			System.out.println(map.get(iterator.next()));
