@@ -1,11 +1,11 @@
 package threads;
 
-public class Q03_IntrensicMonitorLockMain {
+public class Q03_IntrinsicMonitorLockMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Q03_IntrensicMonitorLock obj = new Q03_IntrensicMonitorLock();
+		Q03_IntrinsicMonitorLock obj = new Q03_IntrinsicMonitorLock();
 		
 		Thread t1 = new Thread(()->obj.task1());
 		Thread t2 = new Thread(()->obj.task2());

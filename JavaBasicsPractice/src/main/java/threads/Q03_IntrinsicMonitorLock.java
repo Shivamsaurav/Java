@@ -1,6 +1,6 @@
 package threads;
 
-public class Q03_IntrensicMonitorLock {
+public class Q03_IntrinsicMonitorLock {
 	
 	// synchronized method
 	public synchronized void task1() {
